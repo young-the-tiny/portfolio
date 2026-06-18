@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Inline script to prevent theme flash of light before paint -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', initialTheme);
+    })();
+  </script>
+  <meta name="description" content="Ta Tran Tuyen — Computer Science student specializing in Machine Learning, Deep Reinforcement Learning, and Data Analysis. View projects, research, and skills.">
+  <meta name="keywords" content="Ta Tran Tuyen, portfolio, machine learning, reinforcement learning, data analyst, computer science">
+  <meta name="author" content="Ta Tran Tuyen">
+  <title>Ta Tran Tuyen — ML Engineer & Researcher</title>
+  <link rel="stylesheet" href="index.css?v=2">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text x='50' y='65' font-size='55' font-weight='900' text-anchor='middle' fill='white' font-family='sans-serif'>TT</text></svg>">
+</head>
+<body>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Background Effects -->
+  <canvas id="particles-canvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow--1"></div>
+  <div class="bg-glow bg-glow--2"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="navbar">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">TT.</a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about" class="nav__link" data-section="about">About</a></li>
+        <li><a href="#skills" class="nav__link" data-section="skills">Skills</a></li>
+        <li><a href="#experience" class="nav__link" data-section="experience">Experience</a></li>
+        <li><a href="#projects" class="nav__link" data-section="projects">Projects</a></li>
+        <li><a href="#publications" class="nav__link" data-section="publications">Publications</a></li>
+        <li><a href="#education" class="nav__link" data-section="education">Education</a></li>
+        <li><a href="#contact" class="nav__link" data-section="contact">Contact</a></li>
+      </ul>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <!-- Sun icon (visible in dark mode) -->
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
+        <!-- Moon icon (visible in light mode) -->
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__text">
+          <p class="hero__greeting">// Hello, I'm</p>
+          <h1 class="hero__name">
+            Ta Tran <span class="gradient-text">Tuyen</span>
+          </h1>
+          <p class="hero__title">
+            <span id="typed-text"></span><span class="typed-cursor"></span>
+          </p>
+          <p class="hero__desc">
+            Final-year CS student specializing in <strong>Machine Learning</strong>, 
+            <strong>Deep Reinforcement Learning</strong>, and <strong>Data Analysis</strong>. 
+            Building intelligent systems that learn and adapt.
+          </p>
+          <div class="hero__actions">
+            <a href="#projects" class="btn btn--primary">
+              View Projects
+            </a>
+            <a href="#contact" class="btn btn--outline">
+              Get In Touch
+            </a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STATS ==================== -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stat reveal">
+          <div class="stat__value" data-count="3">0</div>
+          <div class="stat__label">Projects Built</div>
+        </div>
+        <div class="stat reveal reveal-delay-1">
+          <div class="stat__value" data-count="1">0</div>
+          <div class="stat__label">Publications</div>
+        </div>
+        <div class="stat reveal reveal-delay-2">
+          <div class="stat__value" data-count="970">0</div>
+          <div class="stat__label">TOEIC Score</div>
+        </div>
+        <div class="stat reveal reveal-delay-3">
+          <div class="stat__value" data-count="9.5" data-decimal="true">0</div>
+          <div class="stat__label">Thesis Score</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label reveal">About Me</div>
+      <h2 class="section-title reveal">Turning Data Into <span class="gradient-text">Intelligence</span></h2>
+      <div class="about__grid">
+        <div class="about__text reveal">
+          <p>
+            I'm a <strong>final-year Computer Science student</strong> at Sai Gon University, Ho Chi Minh City. 
+            My passion lies at the intersection of <strong>artificial intelligence and finance</strong> — building 
+            systems that can learn from market dynamics and make intelligent decisions autonomously.
+          </p>
+          <p>
+            My thesis on <strong>Group-Agent Reinforcement Learning (GARL)</strong> for stock trading strategies 
+            earned a score of <strong>9.5/10</strong>, demonstrating deep expertise in multi-agent systems and 
+            quantitative finance. I also co-authored a Springer publication on <strong>explainable AI for fraud detection</strong>.
+          </p>
+          <p>
+            Beyond academics, I bring <strong>professional experience</strong> from my data analytics internship where 
+            I automated reporting workflows and analyzed healthcare datasets. I'm seeking opportunities to apply my 
+            ML and data engineering skills in industry.
+          </p>
+        </div>
+
+        <div class="about__info reveal reveal-delay-2">
+          <div class="about__info-grid">
+            <div class="about__info-item">
+              <div class="about__info-label">Name</div>
+              <div class="about__info-value">Tạ Trần Tuyến</div>
+            </div>
+            <div class="about__info-item">
+              <div class="about__info-label">Location</div>
+              <div class="about__info-value">Ho Chi Minh City, VN</div>
+            </div>
+            <div class="about__info-item">
+              <div class="about__info-label">University</div>
+              <div class="about__info-value">Sai Gon University</div>
+            </div>
+            <div class="about__info-item">
+              <div class="about__info-label">Degree</div>
+              <div class="about__info-value">B.Sc. Computer Science</div>
+            </div>
+            <div class="about__info-item">
+              <div class="about__info-label">GPA</div>
+              <div class="about__info-value">3.28 / 4.0</div>
+            </div>
+            <div class="about__info-item">
+              <div class="about__info-label">Status</div>
+              <div class="about__info-value">Final Year</div>
+            </div>
+          </div>
+
+          <div class="language-badges">
+            <div class="lang-badge">
+              <span class="lang-badge__flag">EN</span>
+              <div class="lang-badge__info">
+                <span class="lang-badge__name">English</span>
+                <span class="lang-badge__level">TOEIC L&R / S&W</span>
+              </div>
+              <span class="lang-badge__score">970 / 340</span>
+            </div>
+            <div class="lang-badge">
+              <span class="lang-badge__flag">VN</span>
+              <div class="lang-badge__info">
+                <span class="lang-badge__name">Vietnamese</span>
+                <span class="lang-badge__level">Native Speaker</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS ==================== -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label reveal">Technical Skills</div>
+      <h2 class="section-title reveal">Tools & <span class="gradient-text">Technologies</span></h2>
+      <p class="section-subtitle reveal">A curated set of technologies I've used across research, internships, and personal projects.</p>
+
+      <div class="skills__categories">
+        <div class="skill-category reveal">
+          <div class="skill-category__icon">&lt;/&gt;</div>
+          <h3 class="skill-category__title">Programming Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal reveal-delay-1">
+          <div class="skill-category__icon">AI</div>
+          <h3 class="skill-category__title">Machine Learning & AI</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Scikit-Learn</span>
+            <span class="skill-tag">Stable-Baselines3</span>
+            <span class="skill-tag">FinRL</span>
+            <span class="skill-tag">Optuna</span>
+            <span class="skill-tag">TabNet</span>
+            <span class="skill-tag">SHAP</span>
+            <span class="skill-tag">LIME</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal reveal-delay-2">
+          <div class="skill-category__icon">DA</div>
+          <h3 class="skill-category__title">Data Analysis & Visualization</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">PowerBI</span>
+            <span class="skill-tag">PySpark</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal reveal-delay-3">
+          <div class="skill-category__icon">TF</div>
+          <h3 class="skill-category__title">Tools & Frameworks</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Jupyter</span>
+            <span class="skill-tag">LaTeX</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">SQLite</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPERIENCE ==================== -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label reveal">Work Experience</div>
+      <h2 class="section-title reveal">Professional <span class="gradient-text">Journey</span></h2>
+
+      <div class="timeline">
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__date">Oct 2025 — Dec 2025</div>
+          <div class="timeline__card">
+            <h3 class="timeline__role">Data Analyst (Intern)</h3>
+            <div class="timeline__company">Starcare24h</div>
+            <div class="timeline__location">Ho Chi Minh City, Vietnam</div>
+            <ul class="timeline__points">
+              <li>Analyzed healthcare datasets to identify operational trends using Python and visualization tools</li>
+              <li>Automated reporting workflows to assist management in data-driven decision-making</li>
+              <li>Completed a basic Japanese language course as part of company's internal training program</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal reveal-delay-1">
+          <div class="timeline__dot"></div>
+          <div class="timeline__date">Sep 2022 — Present</div>
+          <div class="timeline__card">
+            <h3 class="timeline__role">Computer Science Student</h3>
+            <div class="timeline__company">Sai Gon University</div>
+            <div class="timeline__location">Ho Chi Minh City, Vietnam</div>
+            <ul class="timeline__points">
+              <li>Pursuing B.Sc. in Computer Science with GPA 3.28/4.0</li>
+              <li>Specialized in Machine Learning, Deep Reinforcement Learning, and Data Analysis</li>
+              <li>Completed graduation thesis scoring 9.5/10 on RL-based stock trading strategies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROJECTS ==================== -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label reveal">Featured Work</div>
+      <h2 class="section-title reveal">Projects & <span class="gradient-text">Research</span></h2>
+      <p class="section-subtitle reveal">A selection of academic research, personal projects, and proof-of-concept systems.</p>
+
+      <div class="projects__grid">
+        <!-- Project 1: Thesis -->
+        <div class="project-card reveal" data-project="thesis" id="project-thesis">
+          <div class="project-card__banner project-card__banner--thesis">
+            <div class="project-card__banner-bg"></div>
+            <span class="project-card__badge project-card__badge--thesis">Thesis · 9.5/10</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Optimization of Stock Trading via Reinforcement Learning</h3>
+            <p class="project-card__desc">Developed an automated trading system for the Vietnamese stock market using Deep RL, achieving 28.47% cumulative return with a Multi-Agent Ensemble strategy.</p>
+            <div class="project-card__tech">
+              <span class="project-card__tech-tag">Python</span>
+              <span class="project-card__tech-tag">PyTorch</span>
+              <span class="project-card__tech-tag">Stable-Baselines3</span>
+              <span class="project-card__tech-tag">Optuna</span>
+              <span class="project-card__tech-tag">FinRL</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="project-card__metric">
+                <span class="project-card__metric-value">28.47%</span>
+                <span class="project-card__metric-label">Return</span>
+              </div>
+              <div class="project-card__metric">
+                <span class="project-card__metric-value">4</span>
+                <span class="project-card__metric-label">Strategies</span>
+              </div>
+              <div class="project-card__metric">
+                <span class="project-card__metric-value">GARL</span>
+                <span class="project-card__metric-label">Novel Method</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Fraud Detection -->
+        <div class="project-card reveal reveal-delay-1" data-project="fraud" id="project-fraud">
+          <div class="project-card__banner project-card__banner--research">
+            <div class="project-card__banner-bg"></div>
+            <span class="project-card__badge project-card__badge--research">Research · Springer</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Explainable TabNet for Credit Card Fraud Detection</h3>
+            <p class="project-card__desc">Proposed a fraud detection framework using TabNet + XAI techniques (SHAP, LIME, DICE), achieving 0.98 F1-Score on the Sparkov dataset.</p>
+            <div class="project-card__tech">
+              <span class="project-card__tech-tag">Python</span>
+              <span class="project-card__tech-tag">TabNet</span>
+              <span class="project-card__tech-tag">SMOTE</span>
+              <span class="project-card__tech-tag">SHAP</span>
+              <span class="project-card__tech-tag">LIME</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="project-card__metric">
+                <span class="project-card__metric-value">0.98</span>
+                <span class="project-card__metric-label">F1-Score</span>
+              </div>
+              <div class="project-card__metric">
+                <span class="project-card__metric-value">XAI</span>
+                <span class="project-card__metric-label">Explainability</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: IoT AI Cluster -->
+        <div class="project-card reveal reveal-delay-2" data-project="iot" id="project-iot">
+          <div class="project-card__banner project-card__banner--iot">
+            <div class="project-card__banner-bg"></div>
+            <span class="project-card__badge project-card__badge--project">Portfolio Project</span>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">IoT AI Cluster Backend</h3>
+            <p class="project-card__desc">Full-stack backend system showcasing Python REST APIs, SQLite database, cluster failover/DR flows, AI incident reporting, and a C++ telemetry simulator.</p>
+            <div class="project-card__tech">
+              <span class="project-card__tech-tag">FastAPI</span>
+              <span class="project-card__tech-tag">SQLite</span>
+              <span class="project-card__tech-tag">Node.js</span>
+              <span class="project-card__tech-tag">C++</span>
+              <span class="project-card__tech-tag">OpenAI API</span>
+            </div>
+            <div class="project-card__metrics">
+              <div class="project-card__metric">
+                <span class="project-card__metric-value">5+</span>
+                <span class="project-card__metric-label">Languages</span>
+              </div>
+              <div class="project-card__metric">
+                <span class="project-card__metric-value">REST</span>
+                <span class="project-card__metric-label">API Design</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PUBLICATIONS ==================== -->
+  <section id="publications">
+    <div class="container">
+      <div class="section-label reveal">Academic Output</div>
+      <h2 class="section-title reveal">Publications & <span class="gradient-text">Papers</span></h2>
+
+      <div class="publication-card reveal">
+        <div class="publication-card__venue">EIDT 2025 · Springer</div>
+        <h3 class="publication-card__title">"An Explainable TabNet-Based Approach for Credit Card Fraud Detection"</h3>
+        <p class="publication-card__authors"><strong>Nhu-Tai Do, Tuyen Ta Tran, Huy Q Nguyen</strong></p>
+        <p class="publication-card__publisher">In Proceedings of EIDT 2025. Published by Springer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EDUCATION ==================== -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label reveal">Education</div>
+      <h2 class="section-title reveal">Academic <span class="gradient-text">Background</span></h2>
+
+      <div class="education-card reveal">
+        <div class="education-card__icon">BSc</div>
+        <div>
+          <h3 class="education-card__degree">Bachelor of Science in Computer Science</h3>
+          <p class="education-card__school">Sai Gon University</p>
+          <div class="education-card__meta">
+            <span class="education-card__meta-item">Sep 2022 — Present</span>
+            <span class="education-card__meta-item">Ho Chi Minh City, VN</span>
+            <span class="education-card__meta-item">GPA: <strong>3.28 / 4.0</strong></span>
+            <span class="education-card__meta-item">Status: <strong>Final Year</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label reveal">Get In Touch</div>
+      <h2 class="section-title reveal">Let's <span class="gradient-text">Connect</span></h2>
+      <p class="section-subtitle reveal">Interested in collaborating on ML projects or have an opportunity? I'd love to hear from you.</p>
+
+      <div class="contact__content">
+        <form class="contact__form reveal" id="contactForm">
+          <div class="form-group">
+            <label for="contact-name">Your Name</label>
+            <input type="text" id="contact-name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" placeholder="Tell me about your project or opportunity..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">
+            Send Message
+          </button>
+        </form>
+
+        <div class="contact__links reveal reveal-delay-2">
+          <a href="mailto:tatrantuyen@gmail.com" class="contact__link-card" id="contact-email-link">
+            <div class="contact__link-icon contact__link-icon--email">@</div>
+            <div>
+              <div class="contact__link-label">Email</div>
+              <div class="contact__link-value">tatrantuyen@gmail.com</div>
+            </div>
+          </a>
+
+          <a href="tel:+84344665709" class="contact__link-card" id="contact-phone-link">
+            <div class="contact__link-icon contact__link-icon--phone">Tel</div>
+            <div>
+              <div class="contact__link-label">Phone</div>
+              <div class="contact__link-value">(+84) 344 665 709</div>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/ta-tran-tuyen-148479258/" target="_blank" rel="noopener" class="contact__link-card" id="contact-linkedin-link">
+            <div class="contact__link-icon contact__link-icon--linkedin">in</div>
+            <div>
+              <div class="contact__link-label">LinkedIn</div>
+              <div class="contact__link-value">Ta Tran Tuyen</div>
+            </div>
+          </a>
+
+          <a href="https://github.com/young-the-tiny" target="_blank" rel="noopener" class="contact__link-card" id="contact-github-link">
+            <div class="contact__link-icon contact__link-icon--github">GH</div>
+            <div>
+              <div class="contact__link-label">GitHub</div>
+              <div class="contact__link-value">young-the-tiny</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">
+        © 2026 <span class="gradient-text">Ta Tran Tuyen</span>. Built with passion & code.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- Project Modal -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal">
+      <div class="modal__header">
+        <div id="modalBadge"></div>
+        <button class="modal__close" id="modalClose">✕</button>
+      </div>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="index.js?v=2"></script>
+</body>
+</html>
